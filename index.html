@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md Qais Alam | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const designWidth = 1200; // your desktop site's width
+  const screenWidth = window.screen.width;
+
+  // get or create viewport tag
+  let meta = document.querySelector("meta[name=viewport]");
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.name = "viewport";
+    document.head.appendChild(meta);
+  }
+
+  if (screenWidth < designWidth) {
+    // force desktop-like scaling
+    const scale = screenWidth / designWidth;
+    meta.setAttribute(
+      "content",
+      "width=" + designWidth + ", initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+    );
+  } else {
+    meta.setAttribute("content", "width=device-width, initial-scale=1.0");
+  }
+});
+</script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      transition:background 0.5s,color 0.5s;
+    }
+
+    /* ---------- Theme Variables ---------- */
+    :root{
+      --bg:#0d0d0d;
+      --text:#e6edf3;
+      --accent:#00c8ff;
+      --card:#161b22;
+      --subtext:#a0a0a0;
+    }
+    body.theme-gray{
+      --bg:#121212;
+      --text:#e0e0e0;
+      --accent:#00bfa6;
+      --card:#1e1e1e;
+      --subtext:#999;
+    }
+    body.theme-light{
+      --bg:#f6f8fa;
+      --text:#1a1a1a;
+      --accent:#0078d4;
+      --card:#ffffff;
+      --subtext:#555;
+    }
+    body.theme-blue{
+      --bg:#0a192f;
+      --text:#e6f1ff;
+      --accent:#64ffda;
+      --card:#112240;
+      --subtext:#8892b0;
+    }
+
+    /* ---------- Header ---------- */
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:18px 8%;background:var(--card);position:sticky;top:0;z-index:5;
+      box-shadow:0 0 8px rgba(0,0,0,0.3);
+    }
+    header h1{
+      color:var(--accent);
+      font-size:1.6rem;
+      font-weight:600;
+      margin-left:-10px;
+    }
+    nav a{
+      margin:0 12px;text-decoration:none;color:var(--text);font-weight:500;
+      position:relative;
+    }
+    nav a::after{
+      content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;
+      background:var(--accent);transition:width 0.3s;
+    }
+    nav a:hover::after{width:100%;}
+    .theme-btn{
+      border:2px solid var(--accent);
+      background:none;color:var(--accent);
+      padding:6px 14px;border-radius:50px;cursor:pointer;font-weight:600;
+      transition:0.3s;margin-right:-10px;
+    }
+    .theme-btn:hover{background:var(--accent);color:var(--bg);}
+
+    /* ---------- Sections ---------- */
+    section{
+      padding:80px 10%;
+      text-align:center;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 0.8s;
+    }
+    section.visible{opacity:1;transform:translateY(0);}
+    h2.section-title{
+      color:var(--accent);font-size:1.9rem;margin-bottom:25px;
+      border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:6px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:40px;
+    }
+    .hero img{
+      width:210px;border-radius:50%;border:3px solid var(--accent);
+      box-shadow:0 0 20px var(--accent);transition:transform 0.4s;
+    }
+    .hero img:hover{transform:scale(1.05);}
+    .hero-text h2{font-size:2.2rem;margin-bottom:10px;}
+    .hero-text p{color:var(--subtext);font-size:1rem;max-width:480px;margin:auto;}
+
+    /* ---------- Projects ---------- */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:25px;
+      margin-top:25px;
+      justify-content:center;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:25px;
+      text-align:left;
+      box-shadow:0 0 8px rgba(0,0,0,0.25);
+      transition:transform 0.3s,box-shadow 0.3s;
+      width:100%;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 0 15px var(--accent);}
+    .card h3{color:var(--accent);margin-bottom:8px;}
+    .card p{font-size:0.95rem;line-height:1.45;color:var(--text);margin-bottom:12px;}
+    .view-btn{
+      display:inline-block;padding:8px 14px;border:2px solid var(--accent);
+      border-radius:30px;color:var(--accent);font-weight:600;text-decoration:none;
+      transition:0.3s ease;
+    }
+    .view-btn:hover{
+      background:var(--accent);
+      color:var(--bg);
+      box-shadow:0 0 10px var(--accent);
+    }
+
+    /* ---------- Contact ---------- */
+    #contact p{margin:8px 0;color:var(--text);}
+    footer{
+      text-align:center;padding:25px;background:var(--card);
+      font-size:0.9rem;opacity:0.85;margin-top:30px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:768px){
+      header{padding:15px 7%;}
+      nav{display:none;}
+      .hero-text h2{font-size:1.7rem;}
+      .hero img{width:160px;}
+      .projects-grid{
+        grid-template-columns:1fr;
+        justify-items:center;
+        gap:10px;
+        padding:0 5px;
+      }
+      .card{
+        width:97%;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+<body class="theme-light">
+  <header>
+    <h1>Md Qais Alam</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#web">Web Dev</a>
+      <a href="#ai">AI Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeButton" onclick="changeTheme()">Dark Mode</button>
+  </header>
+
+  <section id="home" class="hero">
+    <img src="qais.jpeg" alt="Md Qais Alam">
+    <div class="hero-text">
+      <h2>Hi, I'm <span style="color:var(--accent);">Md Qais Alam</span></h2>
+      <h3>Dual Degree student at IIT Delhi</h3>
+      <p>Web Developer • AI & Data Science Enthusiast</p>
+      <p>I’m passionate about creating intelligent and meaningful digital experiences where creativity meets technology.
+      With a background in engineering and a love for innovation, I focus on Web Development and Data Science — building clean, functional web apps and exploring insights through AI and ML.</p>
+    </div>
+  </section>
+
+  <section id="web">
+    <h2 class="section-title">🧱 Web Development Projects</h2>
+    <div class="projects-grid">
+      <div class="card">
+        <h3>Coaching Institute Management Portal</h3>
+        <p>Full Stack Web App for managing students, results, and admin dashboard with responsive UI.</p>
+        <a href="https://maccm.kesug.com" target="_blank" class="view-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Inter10Media – Social Media & Gaming Platform</h3>
+        <p>Full Stack social platform with real-time chat, games, and Instagram-style UI.</p>
+        <a href="https://inter10Media.free.nf" target="_blank" class="view-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Front-End Quiz Web Application</h3>
+        <p>Interactive quiz app with real-time scoring using HTML, CSS, and JS.</p>
+        <a href="https://maccm.kesug.com/dpp.html" target="_blank" class="view-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Healthcare Chatbot Web Application</h3>
+        <p>AI-based healthcare chatbot with voice interaction and Python backend.</p>
+        <a href="https://maccm.kesug.com/healthcareBot/healthcareBot.php" target="_blank" class="view-btn">View Project</a>
+      </div> 
+      <div class="card">
+        <h3>Axiom Trade's token discovery</h3>
+        <p>eterna assessment</p>
+        <a href="https://axiom-eterna-lab.vercel.app" target="_blank" class="view-btn">View Project</a>
+      </div>
+      <div class="card">
+        <h3> BlueStone</h3>
+        <p>screens for an app that allows users to buy and sell digital gold</p>
+        <a href="https://inter10media.free.nf/other_project/bluestone.html" target="_blank" class="view-btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <h2 class="section-title">🤖 AI & Data Science Projects</h2>
+    <div class="projects-grid">
+      <div class="card">
+        <h3>NLP Chatbot</h3>
+        <p>AI chatbot using NLP and PyTorch with intent classification and Flask deployment.</p>
+      </div>
+      <div class="card">
+        <h3>Resume Screening using NLP</h3>
+        <p>Extracts skills from resumes and matches job roles using TF-IDF + Naive Bayes.</p>
+      </div>
+      <div class="card">
+        <h3>Text Summarizer + Q&A Bot</h3>
+        <p>Performs summarization and context-aware Q&A using Hugging Face Transformers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">📞 Contact</h2>
+    <p>Email: <a href="mailto:qaisalam4621@gmail.com">qaisalam4621@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/nack23" target="_blank">github.com/nack23</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/qais23" target="_blank">linkedin.com/in/qais23</a></p>
+    <p>WhatsApp: <a href="https://wa.me/919508623703" target="_blank" rel="noopener noreferrer">Contact</a>
+  </section>
+
+  <footer>© 2025 Md Qais Alam. All Rights Reserved.</footer>
+
+  <script>
+    const themes = ['theme-light','theme-dark','theme-gray','theme-blue'];
+    let index = 0; // start from light
+
+    const btn = document.getElementById("themeButton");
+
+    function changeTheme(){
+      document.body.classList.remove(...themes);
+      index = (index + 1) % themes.length;
+      document.body.classList.add(themes[index]);
+      updateButtonText();
+    }
+
+    function updateButtonText(){
+      const next = themes[(index + 1) % themes.length];
+      if(next === 'theme-light') btn.textContent = "Light Mode";
+      if(next === 'theme-dark') btn.textContent = "Dark Mode";
+      if(next === 'theme-gray') btn.textContent = "Grey Mode";
+      if(next === 'theme-blue') btn.textContent = "Blue Mode";
+    }
+
+    // Scroll animation
+    const sections=document.querySelectorAll("section");
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});
+    },{threshold:0.2});
+    sections.forEach(sec=>observer.observe(sec));
+
+    // Set initial theme
+    document.body.classList.add('theme-light');
+    updateButtonText();
+  </script>
+</body>
+</html>
